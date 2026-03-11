@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>INJECTOR APP WEBSITE</title>
+<link rel="stylesheet" href="style.css">
+
+<!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+</head>
+
+<body>
+  <!-- Login / Register -->
+  <div id="loginPage" class="page login" style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100vh;">
+    <h2>Login / Register</h2>
+    <input type="text" id="usernameInput" placeholder="Username">
+    <input type="password" id="passwordInput" placeholder="Password">
+    <button id="loginBtn">Login / Register</button>
+  </div>
+
+  <!-- Main App -->
+  <div id="mainApp" style="display:none;flex-direction:column;">
+    <header>
+      <h1>INJECTOR APP WEBSITE</h1>
+    </header>
+
+    <nav>
+      <button class="navBtn" data-page="home">Home</button>
+      <button class="navBtn" data-page="upload">Upload APK</button>
+      <button class="navBtn" data-page="profile">Profile</button>
+    </nav>
+
+    <main>
+      <!-- Home Page -->
+      <div id="home" class="page">
+        <input type="text" id="searchInput" placeholder="Search apps..." style="width:100%;padding:8px;margin-bottom:10px;border-radius:8px;border:1px solid #ccc;">
+        <div class="tabs">
+          <button class="tabBtn" data-tab="latest">Latest Upload</button>
+          <button class="tabBtn" data-tab="downloads">Most Downloads</button>
+          <button class="tabBtn" data-tab="myuploads">My Uploads</button>
+        </div>
+        <div id="appGallery"></div>
+      </div>
+
+      <!-- Upload Page -->
+      <div id="upload" class="page" style="display:none;display:flex;justify-content:center;">
+        <div class="uploadCard">
+          <h2>Upload Your APK</h2>
+
+          <label class="fileLabel">
+            App Name:
+            <input type="text" id="appNameInput" placeholder="Enter app name">
+          </label>
+
+          <label class="fileLabel">
+            APK File:
+            <input type="file" id="apkInput" accept=".apk">
+          </label>
+
+          <label class="fileLabel">
+            App Icon:
+            <input type="file" id="iconInput" accept="image/*">
+          </label>
+
+          <div class="iconPreview">
+            <img id="iconPreviewImg" src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Android_icon.png" alt="Icon Preview">
+          </div>
+
+          <textarea id="descInput" placeholder="Enter app description..."></textarea>
+          <button id="uploadBtn" class="uploadBtn">Upload APK</button>
+
+          <!-- Upload progress -->
+          <div id="uploadProgress" style="width:100%;height:20px;background:#eee;border-radius:10px;margin-top:10px;display:none;">
+            <div id="uploadProgressBar" style="height:100%;width:0%;background:#4caf50;border-radius:10px;"></div>
+          </div>
+          <p id="uploadPercent" style="margin:5px 0;"></p>
+        </div>
+      </div>
+
+      <!-- Profile Page -->
+      <div id="profile" class="page" style="display:none;">
+        <h2 id="profileName">Name: </h2>
+        <button id="logoutBtn">Logout</button>
+        <p>Privacy: Only you can see your profile info.</p>
+      </div>
+    </main>
+
+  </div>
+
+  <!-- Install Modal -->
+  <div id="installModal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.6);align-items:center;justify-content:center;">
+    <div class="modalContent" style="background:#fff;padding:20px;border-radius:10px;text-align:center;">
+      <p>Download Complete!</p>
+      <button id="installBtn">Install</button>
+      <button id="cancelBtn">Cancel</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
